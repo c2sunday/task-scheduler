@@ -11,6 +11,7 @@
 <div class='flex flex-col items-center mt-10'>
     <span class='font-semibold text-2xl'>ข้อมูลสาขาเทคโนโลยีสารสนเทศ</span>
     
+
 </div>
 <div class='flex flex-col items-center mt-14 mb-6'>
 <p>สาขางานเทคโนโลยีสารสนเทศ Information Technology เน้นการศึกษาและปฎิบัติงานพื้นฐานอาชีพเทคโนโลยีสารสนเทศ</p>
