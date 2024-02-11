@@ -11,7 +11,7 @@
 	const handleLogin = async (event: SubmitEvent) => {
 		const formData = new FormData(event.target as HTMLFormElement)
 		try {
-		const authData = await pb.collection('users').authWithPassword(formData.get('email'), formData.get('password'))
+		const authData = await pb.collection('users_teacher').authWithPassword(formData.get('email'), formData.get('password'))
 		if(authData) window.location.href = '/'
 		console.log(authData)
 
@@ -29,7 +29,7 @@
 			<form class='flex flex-col gap-2' on:submit|preventDefault={handleLogin}>
 				<input type='text' class='rounded-full' name='email' placeholder='E-Mail Address' />
 				<input type='password' class='rounded-full' name='password' placeholder='Password' />
-				<a href='/tlogin' class='mb-2 text-sm'>Login as Teacher</a>
+				<a href='/login' class='mb-2 text-sm'>Login as Student</a>
 				<button class='bg-black text-white p-2 rounded-full'>Login</button>
 			</form>
 		</div>
