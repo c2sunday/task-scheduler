@@ -14,7 +14,7 @@
 			<a href='/'>Home</a>
 			<a href='/timetable'>Timetable</a>
 			<a href='/instructor'>Instructor</a>
-			<a href='/404'>Assignment</a>
+			<a href='/assignment'>Assignment</a>
 			{#if isLoggedIn}
 				<a href='/profile'>Profile</a>
 				<a href='/logout'>Logout</a>
