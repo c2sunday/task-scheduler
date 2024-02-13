@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-scheduler-backend
+  namespace: cdti-project
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      task-scheduler: backend
+  template:
+    metadata:
+      labels:
+        task-scheduler: backend
+
+    spec:
+      containers:
+        - name: task-scheduler-backend
+          image: chanakan5591/task-scheduler-backend
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: ts-pb-svc
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: task-scheduler-backend
+  namespace: cdti-project
+spec:
+  type: ClusterIP
+  selector:
+    task-scheduler: backend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: ts-pb-svc
