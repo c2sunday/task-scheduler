@@ -6,3 +6,8 @@
 body {
 	font-family: 'Nunito', sans-serif;
 }
+
+.img-bg {
+	background: rgb(240, 236, 98);
+	background: linear-gradient(132deg, rgba(240, 236, 98, 1) 0%, rgba(147, 207, 230, 1) 100%);
+}

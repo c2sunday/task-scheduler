@@ -41,7 +41,7 @@
 			});
 		} else {
 			const us_submitted = await pb.collection('assignments').getFullList({
-				filter: `submitted_std ~ '${authData.id}' && subject = ${data.id}`
+				filter: `submitted_std ~ '${authData.id}' && subject = '${data.id}'`
 			});
 
 			data.assignments.forEach((assignment) => {
@@ -76,37 +76,39 @@
 			{#if tabSet === 0}
 				<div class="flex flex-col gap-4">
 					{#each data.assignments as assignment}
-						<div
-							class="flex items-center justify-between rounded-xl border border-solid border-black border-opacity-20 p-4"
-						>
-							<div class="flex items-center gap-4">
-								<div
-									class="rounded-full {assignment_submitted_map[assignment.id] &&
-									!authData.is_teacher
-										? 'bg-green-500'
-										: 'bg-blue-500'} p-2"
-								>
-									<ClipboardPen class=" text-white" />
-								</div>
-								<div class="flex flex-col">
-									<span class="mb-[-0.2rem] text-lg font-[500]">{assignment.name}</span>
-									<span class="text-sm">{assignment.created}</span>
-								</div>
-							</div>
-							{#if assignment_submitted_map[assignment.id] && authData.is_teacher}
-								<span>ส่งแล้ว {assignment_submitted_map[assignment.id].total}</span>
-							{:else if assignment_submitted_map[assignment.id]}
-								<span>ส่งงานเรียบร้อยแล้ว</span>
-							{:else}
+						<a href="/subject/{data.id}/assignment/{assignment.id}">
+							<div
+								class="flex items-center justify-between rounded-xl border border-solid border-black border-opacity-20 p-4"
+							>
 								<div class="flex items-center gap-4">
-									<span>กำหนดส่ง</span>
-									<div class="flex flex-col justify-center">
-										<span>{new Date(assignment.deadline).toLocaleDateString('th-th')}</span>
-										<span>{new Date(assignment.deadline).toLocaleTimeString('th-th')}</span>
+									<div
+										class="rounded-full {assignment_submitted_map[assignment.id] &&
+										!authData.is_teacher
+											? 'bg-green-500'
+											: 'bg-blue-500'} p-2"
+									>
+										<ClipboardPen class=" text-white" />
+									</div>
+									<div class="flex flex-col">
+										<span class="mb-[-0.2rem] text-lg font-[500]">{assignment.name}</span>
+										<span class="text-sm">{assignment.created}</span>
 									</div>
 								</div>
-							{/if}
-						</div>
+								{#if assignment_submitted_map[assignment.id] && authData.is_teacher}
+									<span>ส่งแล้ว {assignment_submitted_map[assignment.id].total}</span>
+								{:else if assignment_submitted_map[assignment.id]}
+									<span>ส่งงานเรียบร้อยแล้ว</span>
+								{:else}
+									<div class="flex items-center gap-4">
+										<span>กำหนดส่ง</span>
+										<div class="flex flex-col justify-center">
+											<span>{new Date(assignment.deadline).toLocaleDateString('th-th')}</span>
+											<span>{new Date(assignment.deadline).toLocaleTimeString('th-th')}</span>
+										</div>
+									</div>
+								{/if}
+							</div>
+						</a>
 					{/each}
 				</div>
 			{:else if tabSet === 1}
